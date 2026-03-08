@@ -21,10 +21,6 @@
 #define RV003USB_USE_REBOOT_FEATURE_REPORT 0
 
 #ifndef __ASSEMBLER__
-
-#include <tinyusb_hid.h>
-#include <tusb_types.h>
-
 #ifdef INSTANCE_DESCRIPTORS
 /* USB Device Descriptor */
 typedef struct __packed {
