@@ -1,6 +1,7 @@
 # U2HTS_V003J4
-U2HTS CH32V003J4M6 port, based on rv003usb software usb stack
-[zh_CN(简体中文)](./README_zh.md)
+U2HTS CH32V003J4M6 port, based on rv003usb software usb stack  
+[zh_CN(简体中文)](./README_zh.md)  
+<img width="639" height="356" alt="image" src="https://github.com/user-attachments/assets/e0d4ac09-5b0e-463c-b538-af61cf0c27c6" />
 
 # WARNING
 This port is built upon **Bit-banging USB Stack**. Expect unstability and bugs!  
