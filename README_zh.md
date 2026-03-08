@@ -1,5 +1,6 @@
 # U2HTS_V003J4
-U2HTS 的 CH32V003J4M6 移植版, 基于 rv003usb 软件USB栈。
+U2HTS 的 CH32V003J4M6 移植版, 基于 rv003usb 软件USB栈。  
+<img width="639" height="356" alt="image" src="https://github.com/user-attachments/assets/e0d4ac09-5b0e-463c-b538-af61cf0c27c6" />
 
 # 警告
 此版本使用**软件模拟USB**协议栈，可能存在不稳定现象。  
