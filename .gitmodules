@@ -1,0 +1,15 @@
+[submodule "u2hts_touch_controllers"]
+	path = u2hts_touch_controllers
+	url = https://github.com/U2HTS/u2hts_touch_controllers.git
+[submodule "u2hts_core"]
+	path = u2hts_core
+	url = https://github.com/U2HTS/u2hts_core.git
+[submodule "rv003usb"]
+	path = rv003usb
+	url = https://github.com/cnlohr/rv003usb.git
+[submodule "ch32fun"]
+	path = ch32fun
+	url = https://github.com/cnlohr/ch32fun.git
+[submodule "CH32V00x_lib_i2c"]
+	path = CH32V00x_lib_i2c
+	url = https://github.com/ADBeta/CH32V00x_lib_i2c

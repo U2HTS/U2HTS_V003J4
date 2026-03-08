@@ -1,0 +1,33 @@
+name: build firmware
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Fetch code
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+    
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libnewlib-dev gcc-riscv64-unknown-elf make
+    
+    - name: Build firmware
+      run: |
+        make build
+    
+    - name: Upload firmware
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ github.event.repository.name }}-${{ github.run_id }}
+        path: |
+          u2hts_v003j4.bin
+          u2hts_v003j4.hex
