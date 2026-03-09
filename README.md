@@ -9,7 +9,7 @@ This port is built upon **Bit-banging USB Stack**. Expect unstability and bugs!
 # Build
 ```bash
 sudo apt install libnewlib-dev gcc-riscv64-unknown-elf make
-git clone https://github.com/U2HTS/U2HTS_V003J4.git --depth 1
+git clone https://github.com/U2HTS/U2HTS_V003J4.git --depth 1 --recursive
 cd U2HTS_V003J4
 # for gt9xx
 TOUCH_CONTROLLER = ./u2hts_touch_controllers/gt9xx.c make build
