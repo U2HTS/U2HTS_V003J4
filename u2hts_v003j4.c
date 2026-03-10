@@ -12,7 +12,6 @@ int main() {
         .x_max = 720,
         .y_max = 1280
       },
-      .report_delay=16,
   };
   cfg.polling_mode = true;  // no irq
   U2HTS_ERROR_CODES ret = u2hts_init(&cfg);
