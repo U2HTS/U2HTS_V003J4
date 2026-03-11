@@ -158,10 +158,10 @@ static const uint8_t config_descriptor[] = {
     0x01,  // Interval
 };
 
-#define STR_MANUFACTURER u"WCH"
+#define STR_MANUFACTURER u"U2HTS"
 #define STR_PRODUCT      u"USB to HID Touchscreen"
 #ifndef STR_SERIAL
-#define STR_SERIAL       u"USBTOHIDTOUCHSCREEN"
+#define STR_SERIAL       u"U2HTS_V003J4"
 #endif
 
 struct usb_string_descriptor_struct {
