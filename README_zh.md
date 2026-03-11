@@ -14,6 +14,16 @@ cd U2HTS_V003J4
 TOUCH_CONTROLLER = ./u2hts_touch_controllers/gt9xx.c make build
 ```
 
-# 已知问题
-在Windows平台上，当触摸屏幕后，触摸事件会延迟很长一段时间之后才出现...  
-Linux平台(Android)可以正常工作, 回报率125 Hz(`getevent -r`) .
+# 回报率
+`rv003usb`模拟USB对应的速率为USB LowSpeed，`Endpoint`最大被限制在`8`个字节。  
+| 项目 | 长度 |
+| --- | --- |
+| Report ID | 1 |
+| Touch Point | 4 * `U2HTS_MAX_TPS` |
+| Scan Time | 2 |
+| Touch Count | 1 |
+
+如果设置`U2HTS_MAX_TPS`为`5`，那么整个HID回报包的长度为`1 + 4 * 5 + 2 + 1 = 24`。  
+在`bInterval = 1`的情况下，主机轮询USB设备的频率为`1 ms`，则触摸包需要`24 bytes / 8 bytes = 3`次传输。  
+当`U2HTS_MAX_TPS`为`10`，那么需要`44 bytes / 8 bytes = 6`次传输。  
+在大多数情况下，`5`点触摸在日常场景中已经够用了。

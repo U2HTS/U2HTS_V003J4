@@ -16,7 +16,7 @@ EXTRA_CFLAGS:= -I./rv003usb/rv003usb \
 			   -I./ch32v003fun_libs \
 			   -I./CH32V00x_lib_i2c \
 			   -DU2HTS_LOG_LEVEL=-1 \
-			   -DU2HTS_MAX_TPS=10 \
+			   -DU2HTS_MAX_TPS=5 \
 			   -DU2HTS_ENABLE_COMPACT_REPORT
 
 LINKER_SCRIPT:=./ch32v003_flash.ld

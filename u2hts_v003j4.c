@@ -6,12 +6,7 @@ int main() {
                 
   u2hts_pins_init();
   u2hts_config cfg = {
-      .controller = "gt9xx",
-      .coord_config = {
-        .max_tps = 5,
-        .x_max = 720,
-        .y_max = 1280
-      },
+      .controller = "auto",
   };
   cfg.polling_mode = true;  // no irq
   U2HTS_ERROR_CODES ret = u2hts_init(&cfg);

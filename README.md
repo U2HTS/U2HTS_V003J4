@@ -15,6 +15,16 @@ cd U2HTS_V003J4
 TOUCH_CONTROLLER = ./u2hts_touch_controllers/gt9xx.c make build
 ```
 
-# Known bugs
-On Windows platforms the finger event will delay a huge time to appear in system after touching screen...  
-Linux platforms (Android) works well, report rate ~125 Hz (`getevent -r`).
+# Report Rate
+`rv003usb` only supports USB LowSpeed, with a limit of maximum endpoint transfer size `8`.
+| Item | size |
+| --- | --- |
+| Report ID | 1 |
+| Touch Point | 4 * `U2HTS_MAX_TPS` |
+| Scan Time | 2 |
+| Touch Count | 1 |
+
+The HID report length equal `1 + 4 * 5 + 2 + 1 = 24` with `U2HTS_MAX_TPS` = `5`.  
+USB host polls device under 1ms if `bInterval` set to 1, which means to complete a report needs `24 bytes / 8 bytes = 3` transfers.  
+When set `U2HTS_MAX_TPS` to `10`, it will need `44 bytes / 8 bytes = 6` transfers.  
+Under most conditions ,`5` touch points could deal daily works.  

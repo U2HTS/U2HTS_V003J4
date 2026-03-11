@@ -94,11 +94,11 @@ static const uint8_t u2hts_hid_report_desc[] = {
     U2HTS_HID_TP,                  // Touch Point 3
     U2HTS_HID_TP,                  // Touch Point 4
     U2HTS_HID_TP,                  // Touch Point 5
-    U2HTS_HID_TP,                  // Touch Point 6
-    U2HTS_HID_TP,                  // Touch Point 7
-    U2HTS_HID_TP,                  // Touch Point 8
-    U2HTS_HID_TP,                  // Touch Point 9
-    U2HTS_HID_TP,                  // Touch Point 10
+    // U2HTS_HID_TP,                  // Touch Point 6
+    // U2HTS_HID_TP,                  // Touch Point 7
+    // U2HTS_HID_TP,                  // Touch Point 8
+    // U2HTS_HID_TP,                  // Touch Point 9
+    // U2HTS_HID_TP,                  // Touch Point 10
     0x27, 0xFF, 0xFF, 0x00, 0x00,  // (GLOBAL) LOGICAL_MAXIMUM    65535
     0x75, 0x10,                    // (GLOBAL) REPORT_SIZE        16 bits
     0x55, 0x0C,                    // (GLOBAL) UNIT_EXPONENT      -4
