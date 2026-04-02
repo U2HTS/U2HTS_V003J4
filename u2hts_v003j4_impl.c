@@ -62,9 +62,8 @@ void u2hts_usb_report(uint8_t report_id, const u2hts_hid_report* report) {
   transfer_done = false;
 }
 
-bool u2hts_usb_init() {
+inline void u2hts_usb_init() {
   usb_setup();
-  return true;
 }
 
 uint16_t u2hts_get_timestamp() { return SysTick->CNT & 0xFFFF; }
