@@ -60,6 +60,8 @@ target_include_directories(U2HTS_V003J4 PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/ch32fun/extralibs
     ${CMAKE_CURRENT_LIST_DIR}/rv003usb/rv003usb
     ${CMAKE_CURRENT_LIST_DIR}/CH32V00x_lib_i2c
+    # newlib dir
+    /usr/include/newlib
 )
 
 target_link_libraries(U2HTS_V003J4 PRIVATE u2hts_core -lgcc)
