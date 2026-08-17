@@ -3,7 +3,7 @@ int main() {
   SystemInit();
   Delay_Ms(1);  // Ensures USB re-enumeration after bootloader or reset; Spec
                 // demand >2.5µs ( TDDIS )
-                
+
   u2hts_pins_init();
   u2hts_config cfg = {
       .controller = "auto",

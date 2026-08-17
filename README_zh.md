@@ -10,11 +10,17 @@ U2HTS 的 CH32V003J4M6 移植版, 基于 rv003usb 软件USB栈。
 sudo apt install libnewlib-dev gcc-riscv64-unknown-elf make
 git clone https://github.com/U2HTS/U2HTS_V003J4.git --depth 1
 cd U2HTS_V003J4
-# for gt9xx
+# 直接构建
 TOUCH_CONTROLLER = ./u2hts_touch_controllers/gt9xx.c make build
+
+# 使用 cmake 构建，对 IDE 更友好 （需要先安装 cmake）
+cmake -B build -DTOUCH_CONTROLLER=./u2hts_touch_controllers/gt9xx.c
+cmake --build build
 ```
 
 # 回报率
+使用`dummy_test.c`测得最大回报率约为`250hz/s`。
+
 `rv003usb`模拟USB对应的速率为USB LowSpeed，`Endpoint`最大被限制在`8`个字节。  
 | 项目 | 长度 |
 | --- | --- |

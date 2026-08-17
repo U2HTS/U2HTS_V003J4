@@ -11,11 +11,16 @@ This port is built upon **Bit-banging USB Stack**. Expect unstability and bugs!
 sudo apt install libnewlib-dev gcc-riscv64-unknown-elf make
 git clone https://github.com/U2HTS/U2HTS_V003J4.git --depth 1 --recursive
 cd U2HTS_V003J4
-# for gt9xx
-TOUCH_CONTROLLER = ./u2hts_touch_controllers/gt9xx.c make build
+# build via make
+TOUCH_CONTROLLER=./u2hts_touch_controllers/gt9xx.c make build
+
+# build via cmake, IDE friendly (install cmake first)
+cmake -B build -DTOUCH_CONTROLLER=./u2hts_touch_controllers/gt9xx.c
+cmake --build build
 ```
 
 # Report Rate
+Max report rate ~ `250hz/s` measured by `dummy_test.c` driver.  
 `rv003usb` only supports USB LowSpeed, with a limit of maximum endpoint transfer size `8`.
 | Item | size |
 | --- | --- |

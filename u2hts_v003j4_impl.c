@@ -3,10 +3,12 @@
 #include "u2hts_core.h"
 #include "u2hts_v003j4.h"
 
-__attribute__((__aligned__(
-    4))) static uint8_t usb_tx_buf[sizeof(u2hts_hid_report) + 1] = {0};
+#include "u2hts_hid_report_descriptor.h"
+
+static const u2hts_hid_report* usb_tx_report = NULL;
+static uint8_t usb_ctrl_buf[8] = {0};
 static volatile bool transfer_done = false;
-static uint8_t tx_offset = 0;
+static volatile uint8_t tx_offset = 0;
 
 i2c_device_t dev = {
     .clkr = 0,
@@ -55,9 +57,9 @@ void u2hts_tprst_set(bool value) { funDigitalWrite(PC4, value); }
 inline void u2hts_delay_ms(uint32_t ms) { Delay_Ms(ms); }
 inline void u2hts_delay_us(uint32_t us) { Delay_Us(us); }
 
-void u2hts_usb_report(uint8_t report_id, const u2hts_hid_report* report) {
-  usb_tx_buf[0] = report_id;
-  memcpy(usb_tx_buf + 1, report, sizeof(u2hts_hid_report));
+void u2hts_usb_report(const u2hts_hid_report* report) {
+  transfer_done = true;
+  usb_tx_report = report;
   tx_offset = 0;
   transfer_done = false;
 }
@@ -77,8 +79,8 @@ void usb_handle_hid_get_report_start(struct usb_endpoint* e, int reqLen,
   switch (lValueLSBIndexMSB - 0x0300) {
     case U2HTS_HID_REPORT_TP_MAX_COUNT_ID:
       e->max_len = reqLen < 2 ? reqLen : 2;
-      usb_tx_buf[0] = U2HTS_HID_REPORT_TP_MAX_COUNT_ID;
-      usb_tx_buf[1] = u2hts_get_max_tps();
+      usb_ctrl_buf[0] = U2HTS_HID_REPORT_TP_MAX_COUNT_ID;
+      usb_ctrl_buf[1] = u2hts_get_max_tps();
       transfer_done = true;
       break;
 
@@ -86,12 +88,12 @@ void usb_handle_hid_get_report_start(struct usb_endpoint* e, int reqLen,
       e->max_len = 0;
       break;
   }
-  e->opaque = usb_tx_buf;
+  e->opaque = usb_ctrl_buf;
 }
 
 void usb_handle_hid_set_report_start(struct usb_endpoint* e, int reqLen,
                                      uint32_t lValueLSBIndexMSB) {
-  e->opaque = usb_tx_buf;
+  e->opaque = usb_ctrl_buf;
   e->max_len = reqLen;
 }
 
@@ -99,14 +101,15 @@ void usb_handle_user_in_request(struct usb_endpoint* e, uint8_t* scratchpad,
                                 int endp, uint32_t sendtok,
                                 struct rv003usb_internal* ist) {
   if (endp && !transfer_done) {
-    int8_t remaining_bytes = sizeof(usb_tx_buf) - tx_offset;
+    int8_t remaining_bytes = sizeof(u2hts_hid_report) - tx_offset;
     if (remaining_bytes <= 0) {
       transfer_done = true;
       usb_send_empty(sendtok);
     } else {
-      usb_send_data(usb_tx_buf + tx_offset,
-                    remaining_bytes > 8 ? 8 : remaining_bytes, 0, sendtok);
-      tx_offset += 8;
+      uint8_t chunk = remaining_bytes > 8 ? 8 : remaining_bytes;
+      usb_send_data((const uint8_t*)usb_tx_report + tx_offset, chunk, 0,
+                    sendtok);
+      tx_offset += chunk;
     }
   } else
     usb_send_empty(sendtok);

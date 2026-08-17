@@ -18,16 +18,20 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y libnewlib-dev gcc-riscv64-unknown-elf make
+        sudo apt-get install -y libnewlib-dev gcc-riscv64-unknown-elf make cmake
     
     - name: Build firmware
       run: |
-        make build
+        TOUCH_CONTROLLER = ./u2hts_touch_controllers/gt9xx.c make build
+        cmake -B build -DTOUCH_CONTROLLER=./u2hts_touch_controllers/gt9xx.c
+        cmake --build build
+        
     
     - name: Upload firmware
       uses: actions/upload-artifact@v5
       with:
         name: ${{ github.event.repository.name }}-${{ github.run_id }}
         path: |
+          build
           u2hts_v003j4.bin
           u2hts_v003j4.hex
