@@ -11,7 +11,7 @@ sudo apt install libnewlib-dev gcc-riscv64-unknown-elf make
 git clone https://github.com/U2HTS/U2HTS_V003J4.git --depth 1
 cd U2HTS_V003J4
 # 直接构建
-TOUCH_CONTROLLER = ./u2hts_touch_controllers/gt9xx.c make build
+TOUCH_CONTROLLER=./u2hts_touch_controllers/gt9xx.c make build
 
 # 使用 cmake 构建，对 IDE 更友好 （需要先安装 cmake）
 cmake -B build -DTOUCH_CONTROLLER=./u2hts_touch_controllers/gt9xx.c

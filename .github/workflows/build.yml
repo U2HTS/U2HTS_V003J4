@@ -22,7 +22,7 @@ jobs:
     
     - name: Build firmware
       run: |
-        TOUCH_CONTROLLER = ./u2hts_touch_controllers/gt9xx.c make build
+        TOUCH_CONTROLLER=./u2hts_touch_controllers/gt9xx.c make build
         cmake -B build -DTOUCH_CONTROLLER=./u2hts_touch_controllers/gt9xx.c
         cmake --build build
         
