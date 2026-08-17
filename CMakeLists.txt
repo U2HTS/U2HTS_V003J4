@@ -26,7 +26,7 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE MinSizeRel CACHE STRING "" FORCE)
 endif()
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -Os -march=rv32ec -mabi=ilp32e -DCH32V003 -ffunction-sections -fdata-sections -fmessage-length=0 -msmall-data-limit=8 -fno-tree-loop-distribute-patterns -Wall -i/usr/include/newlib")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -Os -march=rv32ec -mabi=ilp32e -DCH32V003 -ffunction-sections -fdata-sections -fmessage-length=0 -msmall-data-limit=8 -fno-tree-loop-distribute-patterns -Wall -I/usr/include/newlib")
 set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -g -march=rv32ec -mabi=ilp32e")
 
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION ON)
