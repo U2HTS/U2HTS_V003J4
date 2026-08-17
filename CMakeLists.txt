@@ -26,7 +26,7 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE MinSizeRel CACHE STRING "" FORCE)
 endif()
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -Os -march=rv32ec -mabi=ilp32e -DCH32V003 -ffunction-sections -fdata-sections -fmessage-length=0 -msmall-data-limit=8 -fno-tree-loop-distribute-patterns -Wall")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -Os -march=rv32ec -mabi=ilp32e -DCH32V003 -ffunction-sections -fdata-sections -fmessage-length=0 -msmall-data-limit=8 -fno-tree-loop-distribute-patterns -Wall -i/usr/include/newlib")
 set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -g -march=rv32ec -mabi=ilp32e")
 
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION ON)
@@ -60,8 +60,6 @@ target_include_directories(U2HTS_V003J4 PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/ch32fun/extralibs
     ${CMAKE_CURRENT_LIST_DIR}/rv003usb/rv003usb
     ${CMAKE_CURRENT_LIST_DIR}/CH32V00x_lib_i2c
-    # newlib dir
-    /usr/include/newlib
 )
 
 target_link_libraries(U2HTS_V003J4 PRIVATE u2hts_core -lgcc)
