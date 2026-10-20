@@ -19,7 +19,7 @@ cmake --build build
 ```
 
 # 回报率
-使用`dummy_test.c`测得最大回报率约为`250hz/s`。
+使用`dummy_test.c`测得最大回报率约为`250hz`。
 
 `rv003usb`模拟USB对应的速率为USB LowSpeed，`Endpoint`最大被限制在`8`个字节。  
 | 项目 | 长度 |

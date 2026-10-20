@@ -20,7 +20,7 @@ cmake --build build
 ```
 
 # Report Rate
-Max report rate ~ `250hz/s` measured by `dummy_test.c` driver.  
+Max report rate ~ `250hz` measured using `getevent -r` with `dummy_test.c` driver.  
 `rv003usb` only supports USB LowSpeed, with a limit of maximum endpoint transfer size `8`.
 | Item | size |
 | --- | --- |

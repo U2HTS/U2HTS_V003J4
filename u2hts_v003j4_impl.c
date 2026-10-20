@@ -50,14 +50,14 @@ void u2hts_tpint_set_mode(bool mode, bool pull) {
 
 void u2hts_tpint_set(bool value) { U2HTS_UNUSED(value); }
 bool u2hts_tpint_get() { return true; }
-void u2hts_ts_irq_set(bool enable) { UNUSED(enable); }
-void u2hts_ts_irq_init(U2HTS_IRQ_TYPES irq_type) { UNUSED(irq_type); }
+void u2hts_int_set(bool enable) { UNUSED(enable); }
+void u2hts_int_init(U2HTS_INT_FLAGS int_flag) { UNUSED(int_flag); }
 
 void u2hts_tprst_set(bool value) { funDigitalWrite(PC4, value); }
 inline void u2hts_delay_ms(uint32_t ms) { Delay_Ms(ms); }
 inline void u2hts_delay_us(uint32_t us) { Delay_Us(us); }
 
-void u2hts_usb_report(const u2hts_hid_report* report) {
+void u2hts_usb_hid_report(const u2hts_hid_report* report) {
   transfer_done = true;
   usb_tx_report = report;
   tx_offset = 0;
@@ -69,10 +69,6 @@ inline void u2hts_usb_init() {
 }
 
 uint16_t u2hts_get_timestamp() { return SysTick->CNT & 0xFFFF; }
-void u2hts_led_set(bool on) { UNUSED(on); }
-void u2hts_write_config(uint16_t cfg) { UNUSED(cfg); }
-uint16_t u2hts_read_config() { return 0; }
-bool u2hts_usrkey_get() { return false; }
 
 void usb_handle_hid_get_report_start(struct usb_endpoint* e, int reqLen,
                                      uint32_t lValueLSBIndexMSB) {

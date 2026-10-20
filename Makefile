@@ -1,4 +1,4 @@
-all : flash
+all : build
 
 TARGET:=u2hts_v003j4
 

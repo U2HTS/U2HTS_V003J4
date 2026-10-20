@@ -5,10 +5,10 @@ int main() {
                 // demand >2.5µs ( TDDIS )
 
   u2hts_pins_init();
-  u2hts_config cfg = {
+  const u2hts_config cfg = {
       .controller = "auto",
+      .polling_mode = true,
   };
-  cfg.polling_mode = true;  // no irq
   U2HTS_ERROR_CODES ret = u2hts_init(&cfg);
   if (ret)
     while (1);
